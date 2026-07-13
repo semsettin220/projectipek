@@ -7,211 +7,77 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
         
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #1f2833, #0b0c10);
-            border-bottom: 1px solid #1f2833;
-            border-radius: 0 0 20px 20px;
-        }
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
-            color: #66fcf1;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            font-size: 1.1rem;
-            color: #45f3ff;
-            letter-spacing: 2px;
-        }
-        .section {
-            background: #1f2833;
-            padding: 30px;
-            margin: 40px 0;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-left: 5px solid #66fcf1;
-        }
-        h2 {
-            color: #66fcf1;
-            margin-bottom: 20px;
-            font-size: 1.6rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        p {
-            line-height: 1.8;
-            font-size: 1.05rem;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: #45f3ff;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-        }
-        .timeline-item::before {
-            content: '❤️';
-            position: absolute;
-            left: -31px;
-            top: 3px;
-            background: #0b0c10;
-            padding: 2px;
-            font-size: 0.9rem;
-        }
-        .timeline-title {
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 5px;
-        }
-        .timeline-desc {
-            font-size: 0.95rem;
-            color: #a9b7c6;
-            background: rgba(255,255,255,0.03);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 5px;
-            border-left: 3px solid #45f3ff;
-        }
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            max-height: 500px;
-            overflow-y: auto;
-            padding-right: 10px;
-        }
-        .reasons-grid::-webkit-scrollbar {
-            width: 6px;
-        }
-        .reasons-grid::-webkit-scrollbar-thumb {
-            background: #66fcf1;
-            border-radius: 10px;
-        }
-        .reason-item {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-        .reason-item:hover {
-            background: rgba(102, 252, 241, 0.1);
-            transform: translateX(5px);
-        }
-        .footer {
-            text-align: center;
-            padding: 40px;
-            color: #45f3ff;
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #0b0c10; color: #c5c6c7; font-family: 'Poppins', sans-serif; overflow-x: hidden; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        
+        #login-screen { background: #1f2833; padding: 40px 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.6); text-align: center; border: 1px solid #66fcf1; max-width: 400px; width: 90%; }
+        #login-screen h2 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #66fcf1; margin-bottom: 20px; }
+        #password-input { width: 100%; padding: 12px; border-radius: 30px; border: none; background: #0b0c10; color: #fff; text-align: center; margin-bottom: 20px; }
+        #login-btn { background: #66fcf1; color: #0b0c10; border: none; padding: 12px 35px; border-radius: 30px; font-weight: 600; cursor: pointer; width: 100%; }
+        
+        #main-content { display: none; width: 100%; max-width: 800px; padding: 20px; }
+        header { text-align: center; padding: 60px 20px; }
+        h1 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: #66fcf1; }
+        .section { background: #1f2833; padding: 30px; margin: 40px 0; border-radius: 15px; border-left: 5px solid #66fcf1; }
+        .reasons-grid { display: grid; grid-template-columns: 1fr; gap: 10px; max-height: 400px; overflow-y: auto; }
+        .reason-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Hoş geldin Hayatım ❤️</h1>
-        <div class="subtitle">Sadece Senin İçin, Senin Aşkınla...</div>
-    </header>
+    <div id="login-screen">
+        <h2>Hoş Geldin Hayatım ❤️</h2>
+        <input type="text" id="password-input" placeholder="Doğum tarihin...">
+        <button id="login-btn" onclick="checkPassword()">Giriş Yap</button>
+        <p id="error-msg" style="color:red; display:none; margin-top:10px;">Hatalı şifre!</p>
+    </div>
 
-    <div class="container">
+    <div id="main-content">
+        <header><h1>Hoş geldin Hayatım ❤️</h1></header>
 
-        <!-- Aşk Mektubu Bölümü -->
         <div class="section">
-            <h2>✉️ Hayatımın Anlamı, Güzel Kadınım...</h2>
+            <h2>✉️ Hayatımın Anlamı</h2>
             <p>Bu siteyi sana olan sevgimi, kalbimin en derin köşesinde biriktirdiğim her şeyi kelimelere dökmek için hazırladım. Sen benim bu hayattaki en büyük şansım, geleceğe dair kurduğum tüm güzel hayallerin başrolüsün.</p>
-            <p>Hayatıma girdiğin o ilk andan beri her günüm seninle güzelleşti, anlam kazandı. Mektuplarda ya da süslü sözlerde hep bir şeyler aranır ama benim sana olan aşkımın tarifi çok net: Sen benim yarınlarım, ömrümün geri kalanı ve hayatımın tam anlamısın. Senin yanındayken bulduğum huzuru, gözlerine baktığımda hissettiğim o heyecanı dünyadaki hiçbir şeye değişmem.</p>
-            <p>İyi ki hayatımdasın, iyi ki benim kadınımsın. Seni çok seviyorum.</p>
         </div>
 
-        <!-- Hikayemiz Zaman Çizelgesi -->
         <div class="section">
-            <h2>⏳ Bizim Hikayemiz</h2>
-            <div class="timeline">
-                
-                <div class="timeline-item">
-                    <div class="timeline-title">1. Seni İlk Kez Gördüm</div>
-                    <div class="timeline-desc">
-                        O an zaman benim için tamamen durdu. Kalabalıkların arasında, etraftaki hiçbir sesin veya yüzün önemi kalmadı; sadece sen vardın. Gözlerim gözlerinle buluştuğunda, ruhumun uzun zamandır aradığı o eksik parçayı bulduğunu hissettim. İçimde tarifi imkansız, sıcacık ve çok derin bir duygu uyandı. O an anladım ki, sen benim bu hayattaki en güzel dönüm noktam, hayatımın anlamı olacaktın.
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-title">2. Üniversitenin İlk Günü</div>
-                    <div class="timeline-desc">Yepyeni bir başlangıç, yollarımızın kesişeceği o büyülü atmosferin ilk adımları...</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-title">3. Sınıf Yemeği</div>
-                    <div class="timeline-desc">Yan yana geldiğimiz, heyecandan kalbimin yerinden çıkacak gibi olduğu, sesini her duyduğumda dünyaya daha da bağlandığım o ilk uzun anlar.</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-title">4. Instagram İsteği</div>
-                    <div class="timeline-desc">Dünyalarımıza açılan o dijital köprü, birbirimizin hayatından bir daha hiç çıkmamak üzere kurduğumuz o ilk tatlı iletişim bağı.</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-title">5. Hayatım Değişti</div>
-                    <div class="timeline-desc">Andıkça içimi ısıtan o an... Artık tamamen "biz" olduk. Sen benim kadınım oldun, ben seninle tamamlandım. Dünyanın en güzel aşk hikayesi burada, kalbimizde başladı.</div>
-                </div>
-
+            <h2>💖 Seni Sevmemin 100 Nedeni</h2>
+            <div class="reasons-grid" id="reasons-list">
+                <!-- 100 sebep buraya eklenecek -->
             </div>
         </div>
-
-        <!-- Seni Sevmemin Sebepleri Bölümü -->
-        <div class="section">
-            <h2>💖 Seni Sevmemin Nedenleri</h2>
-            <div class="reasons-grid">
-                <div class="reason-item">1. Benimle aynı geleceğe yürümeyi seçtiğin ve ömrünü ömrüme katacak kadar bana güvendiğin için.</div>
-                <div class="reason-item">2. Gözlerimin içine her baktığında kalbime tarifsiz bir huzur ogüven aşıladığın için.</div>
-                <div class="reason-item">3. Ruhuma dokunan o asil ve büyüleyici kadınımsın olduğun için.</div>
-                <div class="reason-item">4. Her sabah uyandığımda gelecekte seninle kuracağım yuvayı, seninle yaşlanacağım günleri bana gururla hayal ettirdiğin için.</div>
-                <div class="reason-item">5. Sadece sevgilim değil, hayatımın tam anlamı, sırdaşım ve en güçlü sığınağım olduğun için.</div>
-                <div class="reason-item">6. Gülüşünle dünyadaki tüm dertleri, tüm sıkıntıları bir anda bana unutturabildiğin için.</div>
-                <div class="reason-item">7. Bana gerçek, olgun ve hesapsız bir aşkın ne kadar yüce bir duygu olduğunu gösterdiğin için.</div>
-                <div class="reason-item">8. Karakterinle, duruşunla ve varlığınla beni her an kendine hayran bıraktığın için.</div>
-                <div class="reason-item">9. Dünyanın en güzel kadını olarak sadece benim kalbimi değil, tüm ömrümü güzelleştirdiğin için.</div>
-                <div class="reason-item">10. Son nefesime kadar sadece senin kollarında yaşlanmak istememi sağlayan o eşsiz sevgin için.</div>
-            </div>
-        </div>
-
     </div>
 
-    <div class="footer">
-        Sonsuza Dek Biz... ❤️
-    </div>
+    <script>
+        const reasons = [
+            "Benimle aynı geleceğe yürümeyi seçtiğin için.", "Gözlerimin içine baktığında huzur verdiğin için.", "Ruhuma dokunan asil kadınım olduğun için.", "Gelecekteki yuvamızı bana hayal ettirdiğin için.", "Sırdaşım ve sığınağım olduğun için.", "Gülüşünle dertlerimi unutturduğun için.", "Olgun ve hesapsız aşkı öğrettiğin için.", "Her an kendine hayran bıraktığın için.", "Dünyanın en güzel kadını olduğun için.", "Seninle yaşlanmak istediğim için.",
+            "Ellerin ellerime değdiğindeki huzur için.", "Sesinle ruhumu sakinleştirdiğin için.", "Bana dünyanın en şanslı adamı gibi hissettirdiğin için.", "Kalbindeki saf sevgi için.", "Doğru yola yönlendirdiğin için.", "Hayallerimin başrolü olduğun için.", "Mesafeleri yok ettiğin için.", "Kokunla evim olduğun için.", "Dağ gibi arkamda durduğun için.", "Kusurlarımla beni kabul ettiğin için.",
+            "Zamanı unutturduğun için.", "Tebessümünle dünyamı aydınlattığın için.", "Elimi tutup güç verdiğin için.", "Hayatıma düzen getirdiğin için.", "Sessizlikte bile beni anladığın için.", "Gözlerindeki ışık için.", "Kalbimi sadece sana açtığım için.", "Asil duruşun için.", "Her şarkıda sen olduğun için.", "En güzel manzaram sen olduğun için.",
+            "Anları anıya dönüştürdüğün için.", "Kalbime bağlandığın için.", "Huzurlu limanım olduğun için.", "Birlikte gülebildiğimiz için.", "Aşkı iliklerine kadar hissettirdiğin için.", "Bakışlarındaki şefkat için.", "Sevmeyi öğrettiğin için.", "Kalbimin seninle attığı için.", "Kadınım olduğun için.", "Yaralarımı sardığın için.",
+            "Eşsiz güzelliğin için.", "Daha iyi bir adam olmamı sağladığın için.", "Korkularımı paylaştığın için.", "Sevgini hissettirdiğin için.", "Seninle yürümekten gurur duyduğum için.", "Sesinin melodisi için.", "Benzersiz olduğun için.", "Ortak dilimiz için.", "Heyecanımın eksilmediği için.", "Kalbimin sahibi olduğun için.",
+            "Karanlığımı aydınlattığın için.", "Zarafetin için.", "Çıkarsız sevgin için.", "Sıcak kolların için.", "Sadakatin için.", "Rüyalarımı süslediğin için.", "En soğuk günlerimi bahara çevirdiğin için.", "Omzundaki emniyet için.", "İnancın için.", "En güzel şiirim olduğun için.",
+            "Yaşlanma hayalimiz için.", "Sevgi iraden için.", "İlham verdiğin için.", "Ruhumu gördüğün için.", "Sevilmenin mucizesi için.", "Derin bakışların için.", "Beni kendine bağladığın için.", "Başarabileceğimi hissettirdiğin için.", "Merhametin için.", "En doğru kararım olduğun için.",
+            "Tek sığınağım olduğun için.", "Dünyamızı güzelleştirdiğin için.", "Tüm dertleri yok ettiğin için.", "Aşkın en saf hali olduğun için.", "En doğal halimle seni sevdiğim için.", "Sana adanmış bir ömür için.", "Gizli gücüm olduğun için.", "Huzurlu sesin için.", "Değiştirdiğin dünyam için.", "Sadık aşkın için.",
+            "Anlarımızın değeri için.", "Cesaretin için.", "Yüklerimi omuzladığın için.", "Samimiyetin için.", "Yaşattığın ilkler için.", "Büyülediğin için.", "Zenginliğin için.", "Taze heyecanın için.", "Zirvem olduğun için.", "Sonsuz huzurun için.",
+            "Bakışındaki aşk için.", "Rehberliğin için.", "Yanımdan ayrılmadığın için.", "Ritmini değiştirdiğin için.", "Belirsizlikleri bitirdiğin için.", "Mucizem olduğun için.", "Uyanma sebebim olduğun için.", "Duruşun için.", "Ortağın olduğum için.", "Seni çok sevdiğim için."
+        ];
+        
+        const list = document.getElementById("reasons-list");
+        reasons.forEach((r, i) => {
+            const div = document.createElement("div");
+            div.className = "reason-item";
+            div.innerText = (i + 1) + ". " + r;
+            list.appendChild(div);
+        });
 
+        function checkPassword() {
+            if (document.getElementById("password-input").value === "LET_DOGUM_TARIHI_BURAYA") {
+                document.getElementById("login-screen").style.display = "none";
+                document.getElementById("main-content").style.display = "block";
+            } else {
+                document.getElementById("error-msg").style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
