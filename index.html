@@ -3,425 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hayatımın Anlamına Özel...</title>
+    <title>Project Ipek</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
-        
+        :root {
+            --bg-color: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1a6;
+            --accent-red: #ff3b30;
+            --accent-gold: #d4af37;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: blur(20px);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
+
         body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
-            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             overflow-x: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
         }
-        
-        /* Şık Şifre Ekranı Tasarımı */
-        #login-screen {
-            background: #1f2833;
-            padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            text-align: center;
-            border: 1px solid #66fcf1;
-            max-width: 450px;
-            width: 90%;
-            transition: all 0.5s ease;
+
+        /* Yıldızlı Arka Plan Simülasyonu */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            opacity: 0.4;
         }
-        #login-screen h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
-            color: #66fcf1;
+
+        /* Bölüm Yönetimi */
+        .screen {
+            display: none;
+            min-height: 100vh;
+            width: 100vw;
+            position: relative;
+            z-index: 10;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .screen.active {
+            display: flex;
+            animation: fadeIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        /* Apple Premium Glassmorphism Kart Düzeni */
+        .premium-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 24px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            margin: 20px 0;
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.5px;
             margin-bottom: 20px;
         }
-        #login-screen p {
-            font-size: 1rem;
-            color: #a9b7c6;
-            margin-bottom: 30px;
-            line-height: 1.6;
+
+        .gold-text {
+            color: var(--accent-gold);
+            font-weight: 400;
         }
-        #password-input {
-            width: 100%;
-            padding: 15px 25px;
+
+        p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        /* Apple Tarzı Premium Butonlar */
+        .apple-btn {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            border: none;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
             border-radius: 30px;
-            border: 2px solid #1f2833;
-            background: #0b0c10;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            margin-top: 15px;
+        }
+
+        .apple-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Form Elemanları (Şifre Ekranı) */
+        .premium-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 16px;
+            border-radius: 12px;
             color: #fff;
             font-size: 1.2rem;
             text-align: center;
+            letter-spacing: 4px;
+            width: 80%;
+            max-width: 300px;
+            margin-bottom: 15px;
             outline: none;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s;
         }
-        #password-input:focus {
-            border-color: #66fcf1;
-            box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+
+        .premium-input:focus {
+            border-color: var(--accent-gold);
         }
-        #login-btn {
-            background: #66fcf1;
-            color: #0b0c10;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-size: 1.1rem;
+
+        .error-msg {
+            color: var(--accent-red);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+
+        /* Zaman Sayacı Küpleri */
+        .countdown-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 15px 5px;
+            border-radius: 16px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.8rem;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
+            color: #fff;
+        }
+
+        .time-box label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        #login-btn:hover {
-            background: #45f3ff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(69, 243, 255, 0.5);
-        }
-        #error-msg {
-            color: #ff4a4a;
-            font-size: 0.95rem;
-            margin-top: 15px;
-            display: none;
-            font-weight: 600;
+
+        /* Sebep Kartları Yapısı */
+        .reason-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 25px;
+            border-radius: 16px;
+            font-style: italic;
+            margin: 20px 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
         }
 
-        /* Ana İçerik Tasarımı (İlk Başta Gizli - Girişten Sonra Açılır) */
-        #main-content {
-            display: none;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #1f2833, #0b0c10);
-            border-bottom: 1px solid #1f2833;
-            border-radius: 0 0 20px 20px;
-        }
-        header h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: #66fcf1;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            font-size: 1.2rem;
-            color: #45f3ff;
-            letter-spacing: 2px;
-        }
-        .section {
-            background: #1f2833;
-            padding: 40px;
-            margin: 50px 0;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border-left: 5px solid #66fcf1;
-        }
-        h2.section-title {
-            color: #66fcf1;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .section p {
-            line-height: 1.9;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-        .timeline {
+        /* Dikey Akış Çizgisi (Hikaye Bölümü) */
+        .timeline-step {
+            margin: 20px 0;
             position: relative;
-            padding-left: 35px;
+            padding-bottom: 15px;
         }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: #45f3ff;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-        }
-        .timeline-item::before {
-            content: '❤️';
-            position: absolute;
-            left: -32px;
-            top: 3px;
-            background: #0b0c10;
-            padding: 2px;
-            font-size: 0.95rem;
-        }
-        .timeline-title {
-            font-weight: 600;
-            color: #fff;
+        .timeline-step:not(:last-child)::after {
+            content: '↓';
+            display: block;
+            margin-top: 15px;
+            color: var(--text-secondary);
             font-size: 1.2rem;
-            margin-bottom: 8px;
         }
-        .timeline-desc {
-            font-size: 1.05rem;
-            color: #a9b7c6;
-            background: rgba(255,255,255,0.03);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 5px;
-            border-left: 3px solid #45f3ff;
-            line-height: 1.7;
-        }
-        .reasons-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            max-height: 550px;
-            overflow-y: auto;
-            padding-right: 15px;
-        }
-        .reasons-grid::-webkit-scrollbar {
-            width: 6px;
-        }
-        .reasons-grid::-webkit-scrollbar-thumb {
-            background: #66fcf1;
-            border-radius: 10px;
-        }
-        .reason-item {
-            background: rgba(255,255,255,0.04);
-            padding: 18px;
-            border-radius: 8px;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-        }
-        .reason-item:hover {
-            background: rgba(102, 252, 241, 0.08);
-            transform: translateX(5px);
-            border-left-color: #66fcf1;
-        }
-        .footer {
-            text-align: center;
-            padding: 50px;
-            color: #45f3ff;
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            width: 100%;
-        }
+
+        /* Gizli Müzik Elemanı */
+        #bg-music { display: none; }
     </style>
 </head>
 <body>
 
-    <!-- GİRİŞ EKRANI -->
-    <div id="login-screen">
-        <h2>Hoş Geldin Hayatım ❤️</h2>
-        <p>Sadece senin açabileceğin, kalbimin en derin köşesine girmek için lütfen doğum tarihini aralarında nokta olacak şekilde girer misin?</p>
-        <input type="text" id="password-input" placeholder="Örn: 07.04.2006">
-        <button id="login-btn" onclick="checkPassword()">Giriş Yap</button>
-        <div id="error-msg">Hatalı şifre bitanem, tekrar dener misin?</div>
+    <div class="stars"></div>
+
+    <!-- Müzik Kutusu (Tarayıcı izinleri sebebiyle ilk etkileşimle çalacak) -->
+    <audio id="bg-music" loop>
+        <!-- Buraya Gökhan Türkmen - Aşk parçasının mp3 linkini veya yerel dosya yolunu eklemelisin -->
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- 1. Ekran: Açılış -->
+    <div id="screen-intro" class="screen active">
+        <div style="max-width: 600px;">
+            <p style="animation: fadeIn 2s forwards;">Bazı insanlar hayatımıza bir anda girer...</p>
+            <p style="animation: fadeIn 4s forwards;">Ama bazıları hayatımızın en güzel hikâyesi olur.</p>
+            <button class="apple-btn" onclick="nextScreen('screen-auth')">💜 Devam Et</button>
+        </div>
     </div>
 
-    <!-- ANA İÇERİK -->
-    <div id="main-content">
-        <header>
+    <!-- 2. Ekran: Şifre -->
+    <div id="screen-auth" class="screen">
+        <div class="premium-card">
+            <h2>Giriş Şifresi</h2>
+            <p>Bu hikâyeye ait olduğunu doğrulamak için özel tarihi gir.</p>
+            <input type="password" id="pass-input" class="premium-input" placeholder="••••••••" maxlength="8">
+            <div id="error-field" class="error-msg"></div>
+            <button class="apple-btn" onclick="checkPassword()">Giriş Yap</button>
+        </div>
+    </div>
+
+    <!-- 3. Ekran: Hoş Geldin ve Ana İçerik Akışı -->
+    <div id="screen-main" class="screen">
+        <div class="premium-card">
             <h1>Hoş geldin Hayatım ❤️</h1>
-            <div class="subtitle">Sadece Senin İçin, Senin Aşkınla...</div>
-        </header>
+            <p>Bugün sana bir hediye vermiyorum. Sana kalbimde biriktirdiğim her şeyi göstermek istiyorum.</p>
+            
+            <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 30px 0;">
 
-        <!-- Aşk Mektubu Bölümü -->
-        <div class="section">
-            <h2 class="section-title">✉️ Hayatımın Anlamı, Güzel Kadınım...</h2>
-            <p>Bu siteyi sana olan sevgimi, kalbimin en derin köşesinde biriktirdiğim her şeyi kelimelere dökmek için hazırladım. Sen benim bu hayattaki en büyük şansım, geleceğe dair kurduğum tüm güzel hayallerin başrolüsün.</p>
-            <p>Hayatıma girdiğin o ilk andan beri her günüm seninle güzelleşti, anlam kazandı. Mektuplarda ya da süslü sözlerde hep bir şeyler aranır ama benim sana olan aşkımın tarifi çok net: Sen benim yarınlarım, ömrümün geri kalanı ve hayatımın tam anlamısın. Senin yanındayken bulduğum huzuru, gözlerine baktığımda hissettiğim o heyecanı dünyadaki hiçbir şeye değişmem.</p>
-            <p>İyi ki hayatımdasın, iyi ki benim kadınımsın. Seni çok seviyorum.</p>
+            <!-- 4. Bölüm: Hikayemiz -->
+            <h2 class="gold-text">4. Hikâyemiz</h2>
+            <div class="timeline-step"><strong>Üniversitenin ilk günü</strong></div>
+            <div class="timeline-step"><strong>Sınıf yemeği</strong></div>
+            <div class="timeline-step"><strong>Seni ilk kez gördüm</strong></div>
+            <div class="timeline-step"><strong>Instagram isteği</strong></div>
+            <div class="timeline-step"><strong>Hayatım değişti</strong></div>
+
+            <button class="apple-btn" onclick="nextScreen('screen-counter')">Devam Et</button>
         </div>
+    </div>
 
-        <!-- Hikayemiz Zaman Çizelgesi -->
-        <div class="section">
-            <h2 class="section-title">⏳ Bizim Hikayemiz</h2>
-            <div class="timeline">
+    <!-- 5. Ekran: İlişki Sayacı -->
+    <div id="screen-counter" class="screen">
+        <div class="premium-card">
+            <h2 class="gold-text">İlişki Sayacımız</h2>
+            <p>Her saniyesi seninle güzel...</p>
+            
+            <div class="countdown-container">
+                <div class="time-box"><span id="days">00</span><label>Gün</label></div>
+                <div class="time-box"><span id="hours">00</span><label>Saat</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>Dk</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>Sn</label></div>
+            </div>
+
+            <button class="apple-btn" onclick="nextScreen('screen-letter')">Mektubumuzu Oku</button>
+        </div>
+    </div>
+
+    <!-- 6. Ekran: Sana Mektubum -->
+    <div id="screen-letter" class="screen">
+        <div class="premium-card">
+            <h2 class="gold-text">Sana Mektubum</h2>
+            <p style="text-align: left; white-space: pre-line; font-style: italic;">
+                İpek'im, İnatçım, Merhametlim... 
                 
-                <div class="timeline-item">
-                    <div class="timeline-title">1. Seni İlk Kez Gördüm</div>
-                    <div class="timeline-desc">
-                        O an zaman benim için tamamen durdu. Kalabalıkların arasında, etraftaki hiçbir sesin veya yüzün önemi kalmadı; sadece sen vardın. Gözlerim gözlerinle buluştuğunda, ruhumun uzun zamandır aradığı o eksik parçayı bulduğunu hissettim. İçimde tarifi imkansız, sıcacık ve çok derin bir duygu uyandı. O an anladım ki, sen benim bu hayattaki en güzel dönüm noktam, hayatımın anlamı olacaktın.
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-title">2. Üniversitenin İlk Günü</div>
-                    <div class="timeline-desc">Yepyeni bir başlangıç, yollarımızın kesişeceği o büyülü atmosferin ilk adımları...</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-title">3. Sınıf Yemeği</div>
-                    <div class="timeline-desc">Yan yana geldiğimiz, heyecandan kalbimin yerinden çıkacak gibi olduğu, sesini her duyduğumda dünyaya daha da bağlandığım o ilk uzun anlar.</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-title">4. Instagram İsteği</div>
-                    <div class="timeline-desc">Dünyalarımıza açılan o dijital köprü, birbirimizin hayatından bir daha hiç çıkmamak üzere kurduğumuz o ilk tatlı iletişim bağı.</div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-title">5. Hayatım Değişti</div>
-                    <div class="timeline-desc">Andıkça içimi ısıtan o an... Artık tamamen "biz" olduk. Sen benim kadınım oldun, ben seninle tamamlandım. Dünyanın en güzel aşk hikayesi burada, kalbimizde başladı.</div>
-                </div>
-
-            </div>
+                Gülüşünü çok sevdiğim kadın. Seninle geçirdiğim her gün, hayatımın en değerli parçası haline geldi. Gelecekte kuracağımız o sıcak yuvayı, senin o çok istediğin erkek çocuğunu ve benim o delicesine istediğim kız çocuğunu düşündükçe içim umutla doluyor.
+                
+                Seni çooooookkkkk seviyorum.
+            </p>
+            <button class="apple-btn" onclick="nextScreen('screen-reasons')">Neden Seviyorum?</button>
         </div>
+    </div>
 
-        <!-- Seni Sevmemin Sebepleri Bölümü -->
-        <div class="section">
-            <h2 class="section-title">💖 Seni Sevmemin 100 Nedeni</h2>
-            <div class="reasons-grid" id="reasons-list">
-                <!-- JavaScript 100 sebebi buraya o şık tasarımla dolduracak -->
+    <!-- 7 & 8 & 9 & 10. Ekran: Seni Neden Seviyorum Kart Sistemi (Dinamik) -->
+    <div id="screen-reasons" class="screen">
+        <div class="premium-card">
+            <h2 class="gold-text">Seni Neden Seviyorum?</h2>
+            <p>100 farklı sebepten sadece birkaçı...</p>
+            
+            <div id="dynamic-reason" class="reason-card">
+                Gülüşün dünyaya değer...
             </div>
-        </div>
 
-        <div class="footer">
-            Sonsuza Dek Biz... ❤️
+            <button class="apple-btn" id="reason-btn" onclick="changeReason()">Başka Bir Sebep Gör</button>
+            <button class="apple-btn" id="final-btn" style="display:none;" onclick="nextScreen('screen-final')">Sona Doğru</button>
+        </div>
+    </div>
+
+    <!-- 12. Ekran: Final -->
+    <div id="screen-final" class="screen">
+        <div class="premium-card">
+            <h2 style="font-style: italic;">"Bu sitenin sonuna geldin... Ama seni sevmemin sonuna asla gelmeyeceğim."</h2>
+            <p class="gold-text" style="font-size: 1.5rem; margin-top: 25px;">Şemsettin ❤️ İpek Burcu</p>
+            <p style="font-size: 0.8rem; margin-top: 40px; color: rgba(255,255,255,0.2);">✦ Gece gökyüzü ve kayan yıldızlar her zaman bizimle... ✦</p>
         </div>
     </div>
 
     <script>
-        const reasons = [
-            "Benimle aynı geleceğe yürümeyi seçtiğin ve ömrünü ömrüme katacak kadar bana güvendiğin için.", 
-            "Gözlerimin içine her baktığında kalbime tarifsiz bir huzur ve güven aşıladığın için.", 
-            "Ruhuma dokunan o asil ve büyüleyici kadınımsın olduğun için.", 
-            "Her sabah uyandığımda gelecekte seninle kuracağım yuvayı, seninle yaşlanacağım günleri bana hayal ettirdiğin için.", 
-            "Sadece sevgilim değil, hayatımın tam anlamı, sırdaşım ve en güçlü sığınağım olduğun için.", 
-            "Gülüşünle dünyadaki tüm dertleri, tüm sıkıntıları bir anda bana unutturabildiğin için.", 
-            "Bana gerçek, olgun ve hesapsız bir aşkın ne kadar yüce bir duygu olduğunu gösterdiğin için.", 
-            "Karakterinle, duruşunla ve varlığınla beni her an kendine hayran bıraktığın için.", 
-            "Dünyanın en güzel kadını olarak sadece benim kalbimi değil, tüm ömrümü güzelleştirdiğin için.", 
-            "Son nefesime kadar sadece senin kollarında yaşlanmak istememi sağlayan o eşsiz sevgin için.",
-            "Ellerin ellerime değdiğinde içimde kopan o tatlı fırtınalar için.", 
-            "En zor anlarımda bile sadece sesinle ruhumu sakinleştirmeyi başarabildiğin için.", 
-            "Bana baktığın an kendimi dünyanın en şanslı adamı gibi hissettirdiğin için.", 
-            "Kalbindeki o bitmek bilmeyen saf sevgiyi bana cömertçe sunduğun için.", 
-            "Fikirlerinle ve olgunluğunla hayatıma her zaman doğru yönü verdiğin için.", 
-            "Hayallerimin merkezine yerleşip, her birini gerçekleştirmek için bana güç verdiğin için.", 
-            "Aramızdaki tüm mesafeleri veya engelleri tek bir bakışınla yok edebildiğin için.", 
-            "Kokunla evim, sıcaklığınla dünyam olduğun için.", 
-            "Dünyaya karşı dururken arkamda dağ gibi duran o asil varlığın için.", 
-            "Kusurlarımla, hatalarımla beni ben olduğum için sevip kabul ettiğin için.",
-            "Seninle konuşurken zamanın nasıl akıp gittiğini tamamen unutturduğun için.", 
-            "Yüzündeki o küçük bir tebessümün bile benim dünyamı aydınlatmaya yettiği için.", 
-            "Her düştüğümde elimi tutup beni ayağa kaldıracak o güce sahip olduğun için.", 
-            "Hayatıma getirdiğin o derin anlam ve sarsılmaz düzen için.", 
-            "Birlikte sustuğumuz anlarda bile beni sessizce anlayabildiğin için.", 
-            "Geleceğe umutla bakmamı sağlayan o parıltılı gözlerin için.", 
-            "Kalbimi bir başkasına asla böyle açamayacağımı bana kanıtladığın için.", 
-            "Attığın her adımda gurur duyduğum asil bir kadın olduğun için.", 
-            "Her şarkıda, her şiirde bana sadece kendini hatırlattığın için.", 
-            "Ömrüm boyunca görebileceğim en güzel manzara senin yüzün olduğu için.",
-            "Sıradan anları bile seninle geçince unutulmaz birer anıya dönüştürdüğün için.", 
-            "Kalbime attığın o ilk düğümü gün geçtikçe daha da güçlendirdiğin için.", 
-            "Hayatımdaki tüm kaosun içinde bulduğum en huzurlu liman olduğun için.", 
-            "Benimle ağlayıp, benimle en içten kahkahaları paylaşabildiğin için.", 
-            "Aşk kelimesinin içini sadece sözle değil, tüm hayatınla doldurduğun için.", 
-            "Bakışlarındaki o gizemli ve derin şefkat için.", 
-            "Bana sevmeyi, değer vermeyi ve bir ömrü paylaşmayı en güzel haliyle öğrettiğin için.", 
-            "Attığım her adımda kalbimin senin ritminle atmasını sağladığın için.", 
-            "Yalnızca benim kadınım olarak hayatımı taçlandırdığın için.", 
-            "Geçmişteki tüm kırgınlıklarımı tek bir sarılmanla iyileştirebildiğin için.",
-            "Dünyadaki tüm güzellikleri tek bir bünyede topladığın için.", 
-            "Beni her gün daha iyi bir adam olmaya teşvik ettiğin için.", 
-            "Düşüncelerimi, korkularımı korkusuzca paylaşabildiğim tek insan olduğun için.", 
-            "Gözlerini benden kaçırdığında bile içindeki o derin sevgiyi hissettirdiğin için.", 
-            "Hayat yolculuğunu seninle yürümenin bana verdiği o sonsuz gurur için.", 
-            "Sesinin tonundaki o huzur veren eşsiz melodi için.", 
-            "Sadece benim dünyama ait o özel ve benzersiz kadın olduğun için.", 
-            "Birlikte kurduğumuz o güçlü bağa sonuna kadar sadık kaldığın için.", 
-            "Yıllar geçse de sana olan heyecanımın hiç eksilmeyeceğini bildiğim için.", 
-            "Kalbimin tek ve gerçek sahibi olduğun için.",
-            "Bütün çıkmaz sokaklarımı seninle aydınlık caddelere dönüştürdüğüm için.", 
-            "Her detayında zarafet ve asalet barındıran bir ruha sahip olduğun için.", 
-            "Bana sunduğun o karşılıksız ve çıkarsız sevgi seli için.", 
-            "Yorgun argın eve döndüğümde bana dünyaları unutturan o sıcak kolların için.", 
-            "Benimle kurduğun o güçlü bağa sonuna kadar sadık kaldığın için.", 
-            "Rüyalarımı bile seninle süslememe izin verdiğin için.", 
-            "Sıcaklığınla en soğuk günlerimi bile bahara çevirdiğin için.", 
-            "Başımı omzuna koyduğumda hissettiğim o eşsiz emniyet duygusu için.", 
-            "Hayatın tüm zorluklarına karşı dururken bana aşıladığın o bitmez tükenmez inanç için.", 
-            "Ömrümün en güzel şiiri, en kıymetli şarkısı olduğun için.",
-            "Birlikte yaşlanacağımız o güzel günlerin hayalini kurdurduğun için.", 
-            "İçindeki o asil ve sarsılmaz sevgi iradesi için.", 
-            "Her fikrinle ufkumu genişletip bana ilham verdiğin için.", 
-            "Kimsenin göremediği ruhumu en berrak haliyle görebildiğin için.", 
-            "Bana hayatın sadece yaşamaktan ibaret olmadığını, sevilmenin mucizesini gösterdiğin için.", 
-            "Gözlerindeki o büyüleyici ve derin anlam dünyası için.", 
-            "Bir ömür boyu elini hiç bırakmak istemececeğim kadar beni kendine bağladığın için.", 
-            "Sadece yanımda durarak bile bana dünyadaki her şeyi başarabileceğimi hissettirdiğin için.", 
-            "Kalbindeki o benzersiz merhamet ve sevgi dolu yürek için.", 
-            "Hayatımın en doğru, en güzel kararı olduğun için.",
-            "Beni koşulsuzca dinleyen, anlayan tek sığınağım olduğun için.", 
-            "Seninle kurduğumuz bu ortak dünyayı her gün daha da güzelleştirdiğin için.", 
-            "Tek bir sözünle içimdeki tüm karanlıkları yok edebildiğin için.", 
-            "Bana aşkın en olgun, en saf ve en asil halini yaşattığın için.", 
-            "Kendimi senin yanında hiçbir maske takmadan, en doğal halimle bulabildiğim için.", 
-            "Ömrümü ömrüne adamaktan tek bir saniye bile pişman etmeyeceğini bildiğim için.", 
-            "Attığım her başarılı adımda arkamdaki o gizli güç ve motivasyon olduğun için.", 
-            "Dünyadaki tüm gürültünün içinde dinlediğim en huzurlu ses olduğun için.", 
-            "Yüreğime dokunduğun andan beri dünyamı tamamen değiştirdiğin için.", 
-            "Son nefesime kadar sadakatle ve büyük bir aşkla seveceğim kadın olduğun için.",
-            "Birlikte geçirdiğimiz her anın değerini bana hissettirdiğin için.", 
-            "Zorluklar karşısında gösterdiğin o sarsılmaz cesaret ve asalet için.", 
-            "Hayatın getirdiği her yükü benimle sevgiyle omuzladığın için.", 
-            "Kalbindeki samimiyeti gözlerinden okuyabildiğim için.", 
-            "Bana yaşattığın tüm o benzersiz ilkler için.", 
-            "Yanındayken zamanın durmasını isteyecek kadar beni büyülediğin için.", 
-            "Kendi varlığınla hayatıma bambaşka bir zenginlik kattığın için.", 
-            "Sevgini her gün ilk günkü taze heyecanla hissettirebildiğin için.", 
-            "Benim dünyamdaki en özel, en ulaşılmaz zirve olduğun için.", 
-            "Ömrümün geri kalanını seninle geçirecek olmanın verdiği o derin huzur için.",
-            "Her bakışında aşkı yeniden tanımladığın için.", 
-            "Ruhumu benden daha iyi analiz edip bana rehberlik edebildiğin için.", 
-            "Bizi biz yapan tüm o sessiz mücadelelerde yanımdan hiç ayrılmadığın için.", 
-            "Kalbimin ritmini tek bir gülüşünle değiştirebildiğin için.", 
-            "Hayatımdaki tüm belirsizlikleri varlığınla netliğe kavuşturduğun için.", 
-            "Bana dünyadaki en güzel duyguyu, senin tarafından sevilmeyi bahşettiğin için.", 
-            "Her sabah güne başlama sebebim, her gece huzurla uyuma nedenim olduğun için.", 
-            "Karakterinle ve zarafetinle hayatıma örnek bir duruş kattığın için.", 
-            "İyi günde, kötü günde kalbimin tek sarsılmaz ortağı olduğun için.", 
-            "Kısacası sen, sen olduğun ve hayatımı tamamen anlamlı kıldığın için seni çok seviyorum."
-        ];
-        
-        const list = document.getElementById("reasons-list");
-        reasons.forEach((r, i) => {
-            const div = document.createElement("div");
-            div.className = "reason-item";
-            div.innerText = (i + 1) + ". " + r;
-            list.appendChild(div);
-        });
+        // Bilgiler ve Şifre Kontrolü
+        const targetPass = "10072026";
+        const startDate = new Date("2026-07-10T00:00:00"); // Sevgili olunan tarih
 
-        function checkPassword() {
-            var password = document.getElementById("password-input").value.trim();
-            if (password === "07.04.2006") {
-                document.getElementById("login-screen").style.display = "none";
-                document.body.style.display = "block";
-                document.getElementById("main-content").style.display = "block";
-            } else {
-                document.getElementById("error-msg").style.display = "block";
+        // Neden Seviyorum Sistem Kartları İçeriği
+        const reasons = [
+            "Her gün değişen aşk mesajımız: Sen benim hayatımın en parlak gökyüzüsün.",
+            "Çocuk hayallerimizi benimle paylaştığın ve o güzel geleceğe inandığın için.",
+            "İnatçı ama bir o kadar da merhametli kalbine hayran olduğum için.",
+            "Gülüşünü gördüğüm an sınıf yemeğindeki o ilk güne geri döndüğüm için.",
+            "Bana her 'Hayatım' deyişinde dünyaları bana verdiğin için."
+        ];
+        let currentReasonIdx = 0;
+
+        function nextScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            
+            // Kullanıcı ilk etkileşimi yaptığında müziği başlat
+            const music = document.getElementById('bg-music');
+            if(music && music.paused) {
+                music.play().catch(e => console.log("Müzik otomatik başlatılamadı, etkileşim bekleniyor."));
             }
         }
 
-        document.getElementById("password-input").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                checkPassword();
+        function checkPassword() {
+            const input = document.getElementById('pass-input').value;
+            const errorField = document.getElementById('error-field');
+            
+            if(input === targetPass) {
+                errorField.innerText = "";
+                nextScreen('screen-main');
+            } else {
+                errorField.innerText = "Sanırım bu hikâyenin kahramanı sen değilsin. 💜";
             }
-        });
+        }
+
+        // İlişki Sayacı Mantığı (Canlı Çalışır)
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+        setInterval(updateCounter, 1000);
+
+        // Neden Seviyorum Kart Değişimi
+        function changeReason() {
+            currentReasonIdx++;
+            if(currentReasonIdx < reasons.length) {
+                document.getElementById('dynamic-reason').innerText = reasons[currentReasonIdx];
+            }
+            if(currentReasonIdx === reasons.length - 1) {
+                document.getElementById('reason-btn').style.display = 'none';
+                document.getElementById('final-btn').style.display = 'inline-block';
+            }
+        }
     </script>
 </body>
 </html>
